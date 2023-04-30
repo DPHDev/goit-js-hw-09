@@ -1,0 +1,1 @@
+{"mappings":"AAAcA,SAASC,eAAe,SACzBD,SAASC,eAAe","sources":["src/js/01-color-switcher.js"],"sourcesContent":["const start = document.getElementById('start');\nconst stop = document.getElementById('stop');\n"],"names":["document","getElementById"],"version":3,"file":"01-color-switcher.0e6267ad.js.map"}
