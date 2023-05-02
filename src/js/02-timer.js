@@ -3,6 +3,8 @@ import flatpickr from 'flatpickr';
 // Importación adicional de estilos
 import 'flatpickr/dist/flatpickr.min.css';
 
+const startBtn = document.querySelector('[data-start]');
+flatpickr('#datetime-picker', options);
 const date = new Date();
 let dateUnix = date.getTime();
 
@@ -15,8 +17,9 @@ const options = {
     console.log(selectedDates[0]);
     let timeSet = selectedDates[0].getTime();
     if (timeSet <= dateUnix) {
-      startBtn.disabled = true;
-      console.log(`${dateUnix} es mayor a ${timeSet}`);
+        alert("Por favor ingresa una fecha y hora posterior a este momento!");
+    } else {
+        startBtn.disabled = false;
     }
   },
 };
@@ -42,6 +45,5 @@ function convertMs(ms) {
 
 // let dateSet = flatpickr('#datetime-picker', options);
 
-const startBtn = document.querySelector('[data-start]');
 startBtn.disabled = true;
-startBtn.addEventListener('click', flatpickr('#datetime-picker', options));
+startBtn.addEventListener('click', startCounter);
