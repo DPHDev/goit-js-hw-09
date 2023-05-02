@@ -1,7 +1,7 @@
 const form = document.querySelector('.form');
-let delay = form.delay.value;
-let step = form.step.value;
-let amount = form.amount.value;
+let delay = document.querySelector('[name = "delay"]');
+let step = document.querySelector('[name = "step"]');
+let amount = document.querySelector('[name = "amount"]');
 
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
@@ -9,10 +9,10 @@ function createPromise(position, delay) {
     setTimeout(() => {
       if (shouldResolve) {
         // Fulfill
-        resolve({ position, delay });
+        resolve(position, delay);
       } else {
         // Reject
-        reject({ position, delay });
+        reject(position, delay);
       }
     }, delay);
   });
@@ -20,23 +20,27 @@ function createPromise(position, delay) {
 
 form.addEventListener('submit', event => {
   event.preventDefault();
-  for (let i = 1; i <= amount; i++) {
+  const delayNum = Number(delay.value);
+  const stepNum = Number(step.value);
+  const amountNum = Number(amount.value);
+  for (let i = 1; i <= amountNum; i++) {
     if (i == 1) {
-      createPromise(i, delay)
-        .then(({ position, delay }) => {
-          console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+      createPromise(i, delayNum)
+        .then((position, delayNum) => {
+          console.log(`✅ Fulfilled promise ${position} in ${delayNum}ms`);
         })
-        .catch(({ position, delay }) => {
-          console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+        .catch((position, delay) => {
+          console.log(`❌ Rejected promise ${position} in ${delayNum}ms`);
         });
     } else {
-      createPromise(i, step)
-        .then(({ position, step }) => {
-          console.log(`✅ Fulfilled promise ${position} in ${step}ms`);
+      createPromise(i, stepNum)
+        .then((position, step) => {
+          console.log(`✅ Fulfilled promise ${position} in ${stepNum}ms`);
         })
-        .catch(({ position, step }) => {
-          console.log(`❌ Rejected promise ${position} in ${step}ms`);
+        .catch((position, stepNum) => {
+          console.log(`❌ Rejected promise ${position} in ${stepNum}ms`);
         });
     }
   }
 });
+

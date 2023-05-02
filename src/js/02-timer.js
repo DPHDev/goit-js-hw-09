@@ -32,9 +32,11 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
-flatpickr('#datetime-picker', options);
+// let dateSet = flatpickr('#datetime-picker', options);
 
 const startBtn = document.querySelector('[data-start]');
-startBtn.disabled = true;
-startBtn.addEventListener('click', startCounter);
+// startBtn.disabled = true;
+startBtn.addEventListener('click', flatpickr('#datetime-picker', options));
+
+
 
