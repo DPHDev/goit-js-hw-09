@@ -29,12 +29,12 @@ form.addEventListener('submit', event => {
         .then((position, delayNum) => {
           console.log(`✅ Fulfilled promise ${position} in ${delayNum}ms`);
         })
-        .catch((position, delay) => {
+        .catch((position, delayNum) => {
           console.log(`❌ Rejected promise ${position} in ${delayNum}ms`);
         });
     } else {
       createPromise(i, stepNum)
-        .then((position, step) => {
+        .then((position, stepNum) => {
           console.log(`✅ Fulfilled promise ${position} in ${stepNum}ms`);
         })
         .catch((position, stepNum) => {
@@ -43,4 +43,3 @@ form.addEventListener('submit', event => {
     }
   }
 });
-
