@@ -6,7 +6,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 const startBtn = document.querySelector('[data-start]');
 const inputDate = document.getElementById('datetime-picker');
 
-// let dateSet = flatpickr('#datetime-picker', options);
+let dateSet = flatpickr('#datetime-picker', options);
 startBtn.disabled = true;
 
 const date = new Date();
@@ -47,5 +47,5 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
-inputDate.addEventListener('click', flatpickr('#datetime-picker', options));
+// inputDate.addEventListener('click', dateSet);
 startBtn.addEventListener('click', startCounter);
