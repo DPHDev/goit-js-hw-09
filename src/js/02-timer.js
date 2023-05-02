@@ -13,12 +13,9 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     console.log(selectedDates[0]);
-    let timeSet = selectedDates[0].getTime();
-    if (timeSet <= dateUnix) {
-        alert("Por favor ingresa una fecha y hora posterior a este momento!");
-    } else {
-        startBtn.disabled = false;
-    }
+      let timeSet = selectedDates[0].getTime() <= dateUnix
+          ? alert("Por favor ingresa una fecha y hora posterior a este momento!")
+          : startBtn.disabled = false;
   },
 };
 
