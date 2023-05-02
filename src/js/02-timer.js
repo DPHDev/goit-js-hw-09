@@ -4,7 +4,11 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 
 const startBtn = document.querySelector('[data-start]');
-flatpickr('#datetime-picker', options);
+let dateSet = flatpickr('#datetime-picker', options);
+
+startBtn.disabled = true;
+startBtn.addEventListener('click', startCounter);
+
 const date = new Date();
 let dateUnix = date.getTime();
 
@@ -42,8 +46,3 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
-
-// let dateSet = flatpickr('#datetime-picker', options);
-
-startBtn.disabled = true;
-startBtn.addEventListener('click', startCounter);
