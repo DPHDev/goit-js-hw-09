@@ -62,10 +62,14 @@ function  updateClock(clock, selectedDate) {
   const timeLeft = selectedDate - date;
   const { days, hours, minutes, seconds } = convertMs(timeLeft);
 
-  clock.querySelector('[data-days]').textContent = formatValue(days);
-  clock.querySelector('[data-hours]').textContent = formatValue(hours);
-  clock.querySelector('[data-minutes]').textContent = formatValue(minutes);
-  clock.querySelector('[data-seconds]').textContent = formatValue(seconds);
+  clock.querySelector('[data-days]').textContent = addLeadingZero(days);
+  clock.querySelector('[data-hours]').textContent = addLeadingZero(hours);
+  clock.querySelector('[data-minutes]').textContent = addLeadingZero(minutes);
+  clock.querySelector('[data-seconds]').textContent = addLeadingZero(seconds);
+}
+
+function addLeadingZero(value) {
+  return value.toString().padStart(2, '0');
 }
 
 startBtn.addEventListener('click', startCounter);
