@@ -46,19 +46,22 @@ function convertMs(ms) {
 }
 
 function startCounter() {
-  const selectedDate = flatpickr.parseDate(document.getElementById('datetime-picker').value, 'Y-m-d H:i');
+  const selectedDate = flatpickr.parseDate(
+    document.getElementById('datetime-picker').value,
+    'Y-m-d H:i'
+  );
   const clock = document.querySelector('.timer');
-  
+
   let clockCounter = setInterval(() => {
     updateClock(clock, selectedDate);
-    if (dateUnix <= selectedDate) {
+    if (dateUnix >= selectedDate) {
       clearInterval(clockCounter);
-      alert('El momento ha llegado, el pan que habla!')
+      alert('El momento ha llegado, el pan que habla!');
     }
   }, 1000);
-};
+}
 
-function  updateClock(clock, selectedDate) {
+function updateClock(clock, selectedDate) {
   let timeLeft = selectedDate - date;
   let { days, hours, minutes, seconds } = convertMs(timeLeft);
 
