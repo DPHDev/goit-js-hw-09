@@ -4,10 +4,11 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 
 const startBtn = document.querySelector('[data-start]');
+const calendar = document.getElementById('datetime-picker');
 startBtn.disabled = true;
 const date = new Date();
 let dateUnix = date.getTime();
-flatpickr('#datetime-picker', options);
+calendar.addEventListener('click', flatpickr('#datetime-picker', options));
 
 const options = {
   enableTime: true,
