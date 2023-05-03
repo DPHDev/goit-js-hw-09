@@ -24,6 +24,8 @@ const options = {
   },
 };
 
+flatpickr('#datetime-picker', options);
+
 function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
@@ -66,4 +68,4 @@ function  updateClock(clock, selectedDate) {
   clock.querySelector('[data-seconds]').textContent = formatValue(seconds);
 }
 
-startBtn.addEventListener('click', flatpickr('#datetime-picker', options));
+startBtn.addEventListener('click', startCounter);
