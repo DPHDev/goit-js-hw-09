@@ -3,8 +3,11 @@ import flatpickr from 'flatpickr';
 // Importación adicional de estilos
 import 'flatpickr/dist/flatpickr.min.css';
 
+const startBtn = document.querySelector('[data-start]');
+startBtn.disabled = true;
 const date = new Date();
 let dateUnix = date.getTime();
+flatpickr('#datetime-picker', options);
 
 const options = {
   enableTime: true,
@@ -13,9 +16,10 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     console.log(selectedDates[0]);
-      let timeSet = selectedDates[0].getTime() <= dateUnix
-          ? alert("Por favor ingresa una fecha y hora posterior a este momento!")
-          : startBtn.disabled = false;
+    let timeSet =
+      selectedDates[0].getTime() <= dateUnix
+        ? alert('Por favor ingresa una fecha y hora posterior a este momento!')
+        : (startBtn.disabled = false);
   },
 };
 
@@ -38,8 +42,27 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
-// let dateSet = flatpickr('#datetime-picker', options);
+function startCounter() {
+  const selectedDate = flatpickr.parseDate(document.getElementById('datetime-picker').value, 'Y-m-d H:i');
+  const clock = document.querySelector('.timer');
+  
+  clockCounter = setInterval(() => {
+    updateClock(clock, selectedDate);
+    if (date = selectedDate) {
+      clearInterval(countdownInterval);
+      alert('El momento ha llegado, el pan que habla!')
+    }
+  }, 1000);
+};
 
-const startBtn = document.querySelector('[data-start]');
-startBtn.disabled = true;
-startBtn.addEventListener('click', flatpickr('#datetime-picker', options));
+function  updateClock(clock, selectedDate) {
+  const timeLeft = selectedDate - date;
+  const { days, hours, minutes, seconds } = convertMs(timeLeft);
+
+  clock.querySelector('[data-days]').textContent = formatValue(days);
+  clock.querySelector('[data-hours]').textContent = formatValue(hours);
+  clock.querySelector('[data-minutes]').textContent = formatValue(minutes);
+  clock.querySelector('[data-seconds]').textContent = formatValue(seconds);
+}
+
+startBtn.addEventListener('click', startCounter);
