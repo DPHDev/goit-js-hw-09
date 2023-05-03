@@ -54,7 +54,7 @@ function startCounter() {
 
   let clockCounter = setInterval(() => {
     updateClock(clock, selectedDate);
-    if (dateUnix >= selectedDate) {
+    if (date >= selectedDate) {
       clearInterval(clockCounter);
       alert('El momento ha llegado, el pan que habla!');
     }
