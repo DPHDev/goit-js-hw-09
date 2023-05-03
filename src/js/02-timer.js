@@ -57,7 +57,7 @@ function startCounter() {
 }
 
 function updateClock(clock, selectedDate) {
-  let timeLeft = selectedDate - date;
+  let timeLeft = selectedDate - new Date();
   if (timeLeft > 0) {
     let { days, hours, minutes, seconds } = convertMs(timeLeft);
     clock.querySelector('[data-days]').textContent = addLeadingZero(days);
