@@ -52,12 +52,14 @@ function startCounter() {
   );
   const clock = document.querySelector('.timer');
   clockCounter = setInterval(() => {
+    console.log("se inició el intérvalo")
     updateClock(clock, selectedDate);
   }, 1000);
 }
 
 function updateClock(clock, selectedDate) {
   let timeLeft = selectedDate - new Date();
+  console.log(`tiempo restante: ${timeLeft}`);
   if (timeLeft > 0) {
     let { days, hours, minutes, seconds } = convertMs(timeLeft);
     clock.querySelector('[data-days]').textContent = addLeadingZero(days);
