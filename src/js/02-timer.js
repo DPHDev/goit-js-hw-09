@@ -51,7 +51,7 @@ function startCounter() {
   
   let clockCounter = setInterval(() => {
     updateClock(clock, selectedDate);
-    if (date = selectedDate) {
+    if (dateUnix <= selectedDate) {
       clearInterval(clockCounter);
       alert('El momento ha llegado, el pan que habla!')
     }
@@ -59,8 +59,8 @@ function startCounter() {
 };
 
 function  updateClock(clock, selectedDate) {
-  const timeLeft = selectedDate - date;
-  const { days, hours, minutes, seconds } = convertMs(timeLeft);
+  let timeLeft = selectedDate - date;
+  let { days, hours, minutes, seconds } = convertMs(timeLeft);
 
   clock.querySelector('[data-days]').textContent = addLeadingZero(days);
   clock.querySelector('[data-hours]').textContent = addLeadingZero(hours);
