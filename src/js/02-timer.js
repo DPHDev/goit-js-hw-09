@@ -49,10 +49,10 @@ function startCounter() {
   const selectedDate = flatpickr.parseDate(document.getElementById('datetime-picker').value, 'Y-m-d H:i');
   const clock = document.querySelector('.timer');
   
-  clockCounter = setInterval(() => {
+  let clockCounter = setInterval(() => {
     updateClock(clock, selectedDate);
     if (date = selectedDate) {
-      clearInterval(countdownInterval);
+      clearInterval(clockCounter);
       alert('El momento ha llegado, el pan que habla!')
     }
   }, 1000);
