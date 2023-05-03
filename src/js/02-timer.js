@@ -8,7 +8,7 @@ const calendar = document.getElementById('datetime-picker');
 startBtn.disabled = true;
 const date = new Date();
 let dateUnix = date.getTime();
-calendar.addEventListener('click', flatpickr('#datetime-picker', options));
+// calendar.addEventListener('click', flatpickr('#datetime-picker', options));
 
 const options = {
   enableTime: true,
@@ -66,4 +66,4 @@ function  updateClock(clock, selectedDate) {
   clock.querySelector('[data-seconds]').textContent = formatValue(seconds);
 }
 
-startBtn.addEventListener('click', startCounter);
+startBtn.addEventListener('click', flatpickr('#datetime-picker', options));
