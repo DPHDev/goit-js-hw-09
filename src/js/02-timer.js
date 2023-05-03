@@ -8,7 +8,7 @@ const calendar = document.getElementById('datetime-picker');
 startBtn.disabled = true;
 const date = new Date();
 let dateUnix = date.getTime();
-// calendar.addEventListener('click', flatpickr('#datetime-picker', options));
+let clockCounter = null;
 
 const options = {
   enableTime: true,
@@ -44,31 +44,30 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
-
+  
 function startCounter() {
   const selectedDate = flatpickr.parseDate(
     document.getElementById('datetime-picker').value,
     'Y-m-d H:i'
   );
   const clock = document.querySelector('.timer');
-
-  let clockCounter = setInterval(() => {
+  clockCounter = setInterval(() => {
     updateClock(clock, selectedDate);
-    if (date >= selectedDate) {
-      clearInterval(clockCounter);
-      alert('El momento ha llegado, el pan que habla!');
-    }
   }, 1000);
 }
 
 function updateClock(clock, selectedDate) {
   let timeLeft = selectedDate - date;
-  let { days, hours, minutes, seconds } = convertMs(timeLeft);
-
-  clock.querySelector('[data-days]').textContent = addLeadingZero(days);
-  clock.querySelector('[data-hours]').textContent = addLeadingZero(hours);
-  clock.querySelector('[data-minutes]').textContent = addLeadingZero(minutes);
-  clock.querySelector('[data-seconds]').textContent = addLeadingZero(seconds);
+  if (timeLeft > 0) {
+    let { days, hours, minutes, seconds } = convertMs(timeLeft);
+    clock.querySelector('[data-days]').textContent = addLeadingZero(days);
+    clock.querySelector('[data-hours]').textContent = addLeadingZero(hours);
+    clock.querySelector('[data-minutes]').textContent = addLeadingZero(minutes);
+    clock.querySelector('[data-seconds]').textContent = addLeadingZero(seconds);
+  } else {
+    clearInterval(clockCounter);
+    alert('El momento ha llegado, el pan que habla!');
+  }
 }
 
 function addLeadingZero(value) {
